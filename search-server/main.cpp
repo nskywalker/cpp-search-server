@@ -60,7 +60,7 @@ public:
     void AddDocument(int document_id, const string& document) {
         const vector<string> words = SplitIntoWordsNoStop(document);
         for (const auto& word : words) {
-            word_to_document_freqs_[word][document_id]+=(1./words.size());
+            word_to_document_freqs_[word][document_id] += (1./words.size());
         }
     }
 
@@ -79,10 +79,13 @@ public:
     }
     
     void setDocCnt(int docCnt) {document_count_=docCnt;}
+    
+    double CountIDF(const double& freq_word_in_all_docs) const {
+        return log(document_count_/freq_word_in_all_docs);
+    }
 
 private:
     int document_count_ = 0;
-    //map<string, set<int>> word_to_documents_;
     
     map <string, map<int, double>> word_to_document_freqs_;
 
@@ -90,6 +93,17 @@ private:
 
     bool IsStopWord(const string& word) const {
         return stop_words_.count(word) > 0;
+    }
+    
+    pair<string, bool> FindMinusWord(const string& word) const {
+        pair<string, bool> result;
+        if (word[0] != '-') {
+            result = {word, false};
+        }
+        else {
+            result = {word.substr(1), true};
+        }
+        return result;
     }
 
     vector<string> SplitIntoWordsNoStop(const string& text) const {
@@ -110,10 +124,13 @@ private:
     Query ParseQuery(const string& text) const {
         Query query_words;
         for (string& word : SplitIntoWordsNoStop(text)) {
-            if(word[0]!='-')
-                query_words.plus_words.insert(word);
-            else
-                query_words.minus_words.insert(word.substr(1));
+            pair<string, bool> findMinWord = FindMinusWord(word);
+            if(!findMinWord.second) {
+                query_words.plus_words.insert(findMinWord.first);
+            }
+            else {
+                query_words.minus_words.insert(findMinWord.first);
+            }
         }
         return query_words;
     }
@@ -123,9 +140,9 @@ private:
         map<int, double> document_to_relevance;
         for (const auto& word : query_words.plus_words) {
             if (word_to_document_freqs_.count(word)) {
-                double sizeNum = static_cast<double>(word_to_document_freqs_.at(word).size());
+                double freq_word_in_all_docs = static_cast<double>(word_to_document_freqs_.at(word).size());
+                double IDF = CountIDF(freq_word_in_all_docs);
                 for (auto& [id, TF] : word_to_document_freqs_.at(word)) {
-                    double IDF=log(document_count_/sizeNum);
                     document_to_relevance[id]+=(IDF*TF);
                 }
             }
