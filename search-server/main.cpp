@@ -346,7 +346,7 @@ void TestCalcRating() {
 
     const auto found_docs = server.FindTopDocuments("cat");
     const auto& doc = found_docs[0];
-    ASSERT(doc.rating == 3.0);
+    ASSERT(doc.rating == (4 + 2 + 3) / 3);
 }
 
 //Проверка сортировки рейтинга по релевантности
@@ -372,13 +372,10 @@ void TestSortRelevance() {
 
     const auto found_docs = server.FindTopDocuments("cat");
     ASSERT(found_docs.size() == 3);
-    for (int i = 1; i < static_cast<int>(found_docs.size()); i++) {
-        const auto& lhs = found_docs[i-1];
-        const auto& rhs = found_docs[i];
-        //PrintDocument(lhs);
-        //PrintDocument(rhs);
-        ASSERT(lhs.relevance > rhs.relevance or (abs(lhs.relevance - rhs.relevance) < bias and lhs.rating > rhs.rating));
-    }
+    
+    ASSERT(found_docs[0].id == 1);
+    ASSERT(found_docs[1].id == 2);
+    ASSERT(found_docs[2].id == 0);
 }
 
 //Фильтрация результатов поиска с использованием предиката, задаваемого пользователем
@@ -403,14 +400,14 @@ void TestPredicateSearch() {
 
     {
         const auto found_docs = server.FindTopDocuments("cat", [](int document_id, DocumentStatus status, int rating) { return status == DocumentStatus::ACTUAL;});
-        ASSERT(found_docs.size() == 2);
+        ASSERT(found_docs[0].id == 2);
+        ASSERT(found_docs[1].id == 0);
     }
 
     {
         const auto found_docs = server.FindTopDocuments("cat", [](int document_id, DocumentStatus status, int rating) { return document_id % 2 == 0;});
-        for (const auto doc : found_docs) {
-            ASSERT(doc.id % 2 == 0);
-        }
+        ASSERT(found_docs[0].id == 2);
+        ASSERT(found_docs[1].id == 0);
     }
 
 }
@@ -436,17 +433,12 @@ void TestStatusSearch() {
     server.AddDocument(doc_id2, content2, DocumentStatus::ACTUAL, ratings2);
 
 
-    const auto found_docs = server.FindTopDocuments("norwegian cat",
-                                                    [](int document_id, DocumentStatus status, int rating) {
-                                                        return status == DocumentStatus::ACTUAL;
-                                                    });
-    ASSERT_EQUAL(found_docs.size(), 2);
+    const auto found_docs = server.FindTopDocuments("norwegian cat", DocumentStatus::ACTUAL);
+    ASSERT_EQUAL(found_docs[0].id, 0);
+    ASSERT_EQUAL(found_docs[1].id, 2);
 
-
-    const auto found_docs1 = server.FindTopDocuments("cat", [](int document_id, DocumentStatus status, int rating) {
-        return status == DocumentStatus::REMOVED;
-    });
-    ASSERT_EQUAL(found_docs1.size(), 1);
+    const auto found_docs1 = server.FindTopDocuments("cat", DocumentStatus::REMOVED);
+    ASSERT_EQUAL(found_docs1[0].id, 1);
 
 }
 
@@ -473,9 +465,9 @@ void TestCorrectCalcRelevance() {
 
     const auto found_doc = search_server.FindTopDocuments("norwegian cat"s);
 
-    ASSERT(found_doc[0].relevance == (1.0 / 3 * log(3.0 / 3) + 1.0 / 3 * log(3.0 / 2)));
-    ASSERT(found_doc[1].relevance == (1.0 / 5 * log(3.0 / 2) + 1.0 / 5 * log(3.0 / 3)));
-    ASSERT(found_doc[2].relevance == (1.0 / 2 * log(3.0 / 3)));
+    ASSERT(abs(found_doc[0].relevance - (1.0 / 3 * log(3.0 / 3) + 1.0 / 3 * log(3.0 / 2))) < bias);
+    ASSERT(abs(found_doc[1].relevance - (1.0 / 5 * log(3.0 / 2) + 1.0 / 5 * log(3.0 / 3))) < bias);
+    ASSERT(abs(found_doc[2].relevance - (1.0 / 2 * log(3.0 / 3))) < bias);
 }
 
 // Функция TestSearchServer является точкой входа для запуска тестов
