@@ -94,9 +94,6 @@ public:
         : SearchServer(
             SplitIntoWords(stop_words_text))  // Invoke delegating constructor from string container
     {
-        if (!IsValidStopWords()) {
-                throw invalid_argument("Denied characters in stop-words");
-            }
     }
 
     void AddDocument(int document_id, const string& document, DocumentStatus status,
@@ -339,3 +336,47 @@ void PrintDocument(const Document& document) {
          << "relevance = "s << document.relevance << ", "s
          << "rating = "s << document.rating << " }"s << endl;
 }
+
+int main() {
+    try {
+        const string stop_words = "one\r to";
+        SearchServer searchServer(stop_words);
+    }
+    catch(invalid_argument& err) {
+        cout << err.what() << endl;
+    }
+
+    try {
+        const string stop_words = "one to";
+        SearchServer searchServer(stop_words);
+
+        searchServer.AddDocument(0, "Cat is big", DocumentStatus::ACTUAL, {1, 2, 3});
+        searchServer.FindTopDocuments("missed -");
+    }
+    catch(invalid_argument& err) {
+        cout << err.what() << endl;
+    }
+
+    try {
+        const string stop_words = "one to";
+        SearchServer searchServer(stop_words);
+
+        searchServer.AddDocument(0, "Cat is big", DocumentStatus::ACTUAL, {1, 2, 3});
+        searchServer.MatchDocument("missed--", 0);
+    }
+    catch(invalid_argument& err) {
+        cout << err.what() << endl;
+    }
+
+    try {
+        const string stop_words = "one to";
+        SearchServer searchServer(stop_words);
+
+        searchServer.AddDocument(0, "Cat is big", DocumentStatus::ACTUAL, {1, 2, 3});
+        searchServer.GetDocumentId(30);
+    }
+    catch(out_of_range& err) {
+        cout << err.what() << endl;
+    }
+ 
+} 
