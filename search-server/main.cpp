@@ -14,8 +14,6 @@ using namespace std;
 
 const int MAX_RESULT_DOCUMENT_COUNT = 5;
 
-const double bias = 1e-6;
-
 string ReadLine() {
     string s;
     getline(cin, s);
@@ -104,6 +102,7 @@ public:
         if (documents_.count(document_id) != 0 or document_id < 0) {
             throw invalid_argument("Denied document_id");
         }
+        indexes.push_back(document_id);
         const vector<string> words = SplitIntoWordsNoStop(document);
         for (const auto& str : words) {
             if (!IsValidWord(str)) {
@@ -117,42 +116,22 @@ public:
         documents_.emplace(document_id, DocumentData{ComputeAverageRating(ratings), status});
     }
 
-    static int DoubleMinus(const string& str) {
-        int result = 0;
-        for (int i = 1; i < static_cast<int>(str.size()) - 1; i++) {
-            if (str[i-1] == *str.begin()) {
-                if (str[i-1] == '-' and str[i] == '-') {
-                    result++;
-                }
-            }
-            else if (str[i-1] == ' ') {
-                if (str[i] == '-' and str[i+1] == '-') {
-                    result++;
-                }
-            }
-        }
-        return result;
-    }
-
     int GetDocumentId(int index) {
-        vector<int> result;
-        for (const auto [key, value] : documents_) {
-            result.push_back(key);
-        }
-        if (count(result.begin(), result.end(), index) == 0) {
+        if (count(indexes.begin(), indexes.end(), index) == 0) {
             throw out_of_range("Such index is out of range");
         }
-        return result.at(index);
+        return indexes.at(index);
     }
 
     template <typename DocumentPredicate>
     vector<Document> FindTopDocuments(const string& raw_query,
                                       DocumentPredicate document_predicate) const {
+        const double bias = 1e-6;
         const Query query = ParseQuery(raw_query);
         auto matched_documents = FindAllDocuments(query, document_predicate);
 
         sort(matched_documents.begin(), matched_documents.end(),
-             [](const Document& lhs, const Document& rhs) {
+             [bias](const Document& lhs, const Document& rhs) {
                  if (abs(lhs.relevance - rhs.relevance) < bias) {
                      return lhs.rating > rhs.rating;
                  }
@@ -204,6 +183,8 @@ public:
 
 private:
 
+    vector<int> indexes;
+    
     bool IsValidStopWords() const {
         for (const auto& str : stop_words_) {
             if (!IsValidWord(str)) {
@@ -255,9 +236,18 @@ private:
     };
 
     QueryWord ParseQueryWord(string text) const {
+        if (!IsValidWord(text)) {
+            throw invalid_argument("Denied characters in text");
+        }
         bool is_minus = false;
         // Word shouldn't be empty
         if (text[0] == '-') {
+            if (static_cast<int>(text.size()) == 1) {
+                throw invalid_argument("there is minus without word");
+            }
+            else if (text[1] == '-') {
+                throw invalid_argument("there is double minus");
+            }
             is_minus = true;
             text = text.substr(1);
         }
@@ -271,9 +261,6 @@ private:
 
     Query ParseQuery(const string& text) const {
         Query query;
-        if (!IsValidWord(text) or DoubleMinus(text) != 0 or text.back() == '-') {
-            throw invalid_argument("Denied characters in raw_query");
-        }
         for (const string& word : SplitIntoWords(text)) {
             const QueryWord query_word = ParseQueryWord(word);
             if (!query_word.is_stop) {
@@ -361,7 +348,7 @@ int main() {
         SearchServer searchServer(stop_words);
 
         searchServer.AddDocument(0, "Cat is big", DocumentStatus::ACTUAL, {1, 2, 3});
-        searchServer.MatchDocument("missed--", 0);
+        searchServer.MatchDocument("--missed", 0);
     }
     catch(invalid_argument& err) {
         cout << err.what() << endl;
