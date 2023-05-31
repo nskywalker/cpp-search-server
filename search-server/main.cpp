@@ -8,10 +8,13 @@
 #include <vector>
 #include <optional>
 #include <stdexcept>
+#include <numeric>
 
 using namespace std;
 
 const int MAX_RESULT_DOCUMENT_COUNT = 5;
+
+const double bias = 1e-6;
 
 string ReadLine() {
     string s;
@@ -50,9 +53,9 @@ struct Document {
     Document() = default;
 
     Document(int id, double relevance, int rating)
-        : id(id)
-        , relevance(relevance)
-        , rating(rating) {
+            : id(id)
+            , relevance(relevance)
+            , rating(rating) {
     }
 
     int id = 0;
@@ -84,14 +87,14 @@ public:
 
     template <typename StringContainer>
     explicit SearchServer(const StringContainer& stop_words)
-        : stop_words_(MakeUniqueNonEmptyStrings(stop_words)) {
-            if (!IsValidStopWords()) {
-                throw invalid_argument("Denied characters in stop-words");
-            }
+            : stop_words_(MakeUniqueNonEmptyStrings(stop_words)) {
+        if (!IsValidStopWords()) {
+            throw invalid_argument("Denied characters in stop-words");
+        }
     }
 
     explicit SearchServer(const string& stop_words_text)
-        : SearchServer(
+            : SearchServer(
             SplitIntoWords(stop_words_text))  // Invoke delegating constructor from string container
     {
     }
@@ -114,47 +117,46 @@ public:
         documents_.emplace(document_id, DocumentData{ComputeAverageRating(ratings), status});
     }
 
-    int DoubleMinus(const string& str) const {
+    static int DoubleMinus(const string& str) {
         int result = 0;
-        for (int i = 1; i < static_cast<int>(str.size()); i++) {
-            if (str[i-1] == '-' and str[i] == '-') {
-                result++;
+        for (int i = 1; i < static_cast<int>(str.size()) - 1; i++) {
+            if (str[i-1] == *str.begin()) {
+                if (str[i-1] == '-' and str[i] == '-') {
+                    result++;
+                }
+            }
+            else if (str[i-1] == ' ') {
+                if (str[i] == '-' and str[i+1] == '-') {
+                    result++;
+                }
             }
         }
         return result;
     }
 
     int GetDocumentId(int index) {
-        int i = 0;
-        int result = INVALID_DOCUMENT_ID;
+        vector<int> result;
         for (const auto [key, value] : documents_) {
-            if (i == index) {
-                result = key;
-            }
-            i++;
+            result.push_back(key);
         }
-        if (result == INVALID_DOCUMENT_ID) {
+        if (count(result.begin(), result.end(), index) == 0) {
             throw out_of_range("Such index is out of range");
         }
-        return result;
+        return result.at(index);
     }
 
     template <typename DocumentPredicate>
     vector<Document> FindTopDocuments(const string& raw_query,
                                       DocumentPredicate document_predicate) const {
-        if (!IsValidWord(raw_query) or DoubleMinus(raw_query) != 0 or raw_query.back() == '-') {
-            throw invalid_argument("Denied characters in search request");
-        }
         const Query query = ParseQuery(raw_query);
         auto matched_documents = FindAllDocuments(query, document_predicate);
 
         sort(matched_documents.begin(), matched_documents.end(),
              [](const Document& lhs, const Document& rhs) {
-                 if (abs(lhs.relevance - rhs.relevance) < 1e-6) {
+                 if (abs(lhs.relevance - rhs.relevance) < bias) {
                      return lhs.rating > rhs.rating;
-                 } else {
-                     return lhs.relevance > rhs.relevance;
                  }
+                 return lhs.relevance > rhs.relevance;
              });
         if (matched_documents.size() > MAX_RESULT_DOCUMENT_COUNT) {
             matched_documents.resize(MAX_RESULT_DOCUMENT_COUNT);
@@ -164,9 +166,9 @@ public:
 
     vector<Document> FindTopDocuments(const string& raw_query, DocumentStatus status) const {
         return FindTopDocuments(
-            raw_query, [status]([[maybe_unused]] int document_id, DocumentStatus document_status, [[maybe_unused]] int rating) {
-                return document_status == status;
-            });
+                raw_query, [status]([[maybe_unused]] int document_id, DocumentStatus document_status, [[maybe_unused]] int rating) {
+                    return document_status == status;
+                });
     }
 
     vector<Document> FindTopDocuments(const string& raw_query) const {
@@ -178,9 +180,6 @@ public:
     }
 
     tuple<vector<string>, DocumentStatus> MatchDocument(const string& raw_query, int document_id) const {
-        if (!IsValidWord(raw_query) or DoubleMinus(raw_query) != 0 or raw_query.back() == '-') {
-            throw invalid_argument("Denied characters in raw_query");
-        }
         const Query query = ParseQuery(raw_query);
         vector<string> matched_words;
         for (const string& word : query.plus_words) {
@@ -245,10 +244,7 @@ private:
         if (ratings.empty()) {
             return 0;
         }
-        int rating_sum = 0;
-        for (const int rating : ratings) {
-            rating_sum += rating;
-        }
+        int rating_sum = accumulate(ratings.begin(), ratings.end(), 0);
         return rating_sum / static_cast<int>(ratings.size());
     }
 
@@ -275,6 +271,9 @@ private:
 
     Query ParseQuery(const string& text) const {
         Query query;
+        if (!IsValidWord(text) or DoubleMinus(text) != 0 or text.back() == '-') {
+            throw invalid_argument("Denied characters in raw_query");
+        }
         for (const string& word : SplitIntoWords(text)) {
             const QueryWord query_word = ParseQueryWord(word);
             if (!query_word.is_stop) {
@@ -322,7 +321,7 @@ private:
         vector<Document> matched_documents;
         for (const auto [document_id, relevance] : document_to_relevance) {
             matched_documents.push_back(
-                {document_id, relevance, documents_.at(document_id).rating});
+                    {document_id, relevance, documents_.at(document_id).rating});
         }
         return matched_documents;
     }
@@ -378,5 +377,5 @@ int main() {
     catch(out_of_range& err) {
         cout << err.what() << endl;
     }
- 
-} 
+
+}
