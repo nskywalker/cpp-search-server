@@ -6,7 +6,6 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include <optional>
 #include <stdexcept>
 #include <numeric>
 
@@ -49,7 +48,6 @@ vector<string> SplitIntoWords(const string& text) {
 
 struct Document {
     Document() = default;
-
     Document(int id, double relevance, int rating)
             : id(id)
             , relevance(relevance)
@@ -184,7 +182,7 @@ public:
 private:
 
     vector<int> indexes;
-    
+
     bool IsValidStopWords() const {
         for (const auto& str : stop_words_) {
             if (!IsValidWord(str)) {
@@ -313,56 +311,86 @@ private:
         return matched_documents;
     }
 };
+template <typename Iterator>
+class IteratorRange {
+    Iterator start;
+    Iterator finish;
+    int page_size;
+public:
+    explicit IteratorRange(Iterator begin_, Iterator end_, int size) : start(begin_), finish(end_), page_size(size) {}
+    const Iterator begin() const {
+        return start;
+    }
+    const Iterator end() const {
+        return finish;
+    }
+    int size() const {
+        return page_size;
+    }
+};
 
-// ==================== для примера =========================
-
-void PrintDocument(const Document& document) {
-    cout << "{ "s
-         << "document_id = "s << document.id << ", "s
-         << "relevance = "s << document.relevance << ", "s
-         << "rating = "s << document.rating << " }"s << endl;
+ostream &operator<<(ostream &os, const Document &document) {
+    os << "{ "
+       << "document_id = "s << document.id << ", "
+       << "relevance = "s << document.relevance << ", "
+       << "rating = "s << document.rating << " }";
+    return os;
 }
 
+template<typename Iterator>
+ostream &operator<<(ostream &os, const IteratorRange<Iterator> &result) {
+    auto p = result.begin();
+    for (int i = 0; i < result.size(); ++i) {
+        os << *p;
+        advance(p, 1);
+    }
+    return os;
+}
+
+template <typename Iterator>
+class Paginator {
+    vector<IteratorRange<Iterator>> result;
+public:
+    Paginator(Iterator begin_, Iterator end_, int page_size_) {
+        int dist = distance(begin_, end_);
+        int mode = dist / page_size_;
+        for (int i = 0; i < dist; i += page_size_) {
+            Iterator curEnd = begin_;
+            if (i == mode * page_size_) {
+                page_size_ = page_size_ - (dist % page_size_);
+            }
+            advance(curEnd, page_size_ - 1);
+            result.push_back(IteratorRange<Iterator>{begin_, curEnd, page_size_});
+            begin_ = curEnd;
+            advance(begin_, 1);
+        }
+
+    }
+    auto begin() const {
+        return result.begin();
+    }
+    auto end() const {
+        return result.end();
+    }
+};
+
+template <typename Container>
+auto Paginate(const Container& c, size_t page_size) {
+    return Paginator(begin(c), end(c), page_size);
+}
 int main() {
-    try {
-        const string stop_words = "one\r to";
-        SearchServer searchServer(stop_words);
+    SearchServer search_server("and with"s);
+    search_server.AddDocument(1, "funny pet and nasty rat"s, DocumentStatus::ACTUAL, {7, 2, 7});
+    search_server.AddDocument(2, "funny pet with curly hair"s, DocumentStatus::ACTUAL, {1, 2, 3});
+    search_server.AddDocument(3, "big cat nasty hair"s, DocumentStatus::ACTUAL, {1, 2, 8});
+    search_server.AddDocument(4, "big dog cat Vladislav"s, DocumentStatus::ACTUAL, {1, 3, 2});
+    search_server.AddDocument(5, "big dog hamster Borya"s, DocumentStatus::ACTUAL, {1, 1, 1});
+    const auto search_results = search_server.FindTopDocuments("curly dog"s);
+    int page_size = 2;
+    const auto pages = Paginate(search_results, page_size);
+    // Выводим найденные документы по страницам
+    for (auto page = pages.begin(); page != pages.end(); ++page) {
+        cout << *page << endl;
+        cout << "Page break"s << endl;
     }
-    catch(invalid_argument& err) {
-        cout << err.what() << endl;
-    }
-
-    try {
-        const string stop_words = "one to";
-        SearchServer searchServer(stop_words);
-
-        searchServer.AddDocument(0, "Cat is big", DocumentStatus::ACTUAL, {1, 2, 3});
-        searchServer.FindTopDocuments("missed -");
-    }
-    catch(invalid_argument& err) {
-        cout << err.what() << endl;
-    }
-
-    try {
-        const string stop_words = "one to";
-        SearchServer searchServer(stop_words);
-
-        searchServer.AddDocument(0, "Cat is big", DocumentStatus::ACTUAL, {1, 2, 3});
-        searchServer.MatchDocument("--missed", 0);
-    }
-    catch(invalid_argument& err) {
-        cout << err.what() << endl;
-    }
-
-    try {
-        const string stop_words = "one to";
-        SearchServer searchServer(stop_words);
-
-        searchServer.AddDocument(0, "Cat is big", DocumentStatus::ACTUAL, {1, 2, 3});
-        searchServer.GetDocumentId(30);
-    }
-    catch(out_of_range& err) {
-        cout << err.what() << endl;
-    }
-
 }
