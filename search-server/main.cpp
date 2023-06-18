@@ -1,10 +1,12 @@
 #include "search_server.h"
 #include "request_queue.h"
 #include "paginator.h"
+#include "log_duration.h"
 #include <iostream>
 #include <utility>
 
 int main() {
+    LOG_DURATION_STREAM("Operation time", std::cout);
     SearchServer search_server("and in at"s);
     RequestQueue request_queue(search_server);
     search_server.AddDocument(1, "curly cat curly tail"s, DocumentStatus::ACTUAL, {7, 2, 7});
