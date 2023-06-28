@@ -47,8 +47,18 @@ public:
 
     tuple<vector<string>, DocumentStatus> MatchDocument(const string& raw_query, int document_id) const;
 
-private:
+    vector<int>::iterator begin();
+    vector<int>::iterator end();
 
+    const map<string, double>& GetWordFrequencies(int document_id) const;
+
+    void RemoveDocument(int document_id);
+
+    vector<int> GetIdWords() const;
+
+private:
+    map<int, set<string>> id_words;
+    vector<int> id_remove;
     vector<int> indexes;
     bool IsValidStopWords() const;
     static bool IsValidWord(const string& word);

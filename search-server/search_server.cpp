@@ -20,7 +20,16 @@ void SearchServer::AddDocument(int document_id, const string& document, Document
     }
     const double inv_word_count = 1.0 / words.size();
     for (const string& word : words) {
+        id_words[document_id].insert(word);
         word_to_document_freqs_[word][document_id] += inv_word_count;
+    }
+    for (auto& [id, wordes] : id_words) {
+        if (document_id == id or count(id_remove.begin(), id_remove.end(), id) > 0) {
+            continue;
+        }
+        if (wordes == id_words[document_id]) {
+            id_remove.push_back(document_id);
+        }
     }
     documents_.emplace(document_id, DocumentData{ComputeAverageRating(ratings), status});
 }
@@ -143,4 +152,71 @@ SearchServer::Query SearchServer::ParseQuery(const string& text) const {
 
 double SearchServer::ComputeWordInverseDocumentFreq(const string& word) const {
     return log(GetDocumentCount() * 1.0 / word_to_document_freqs_.at(word).size());
+}
+
+vector<int>::iterator SearchServer::begin() {
+    return indexes.begin();
+}
+
+
+vector<int>::iterator SearchServer::end()  {
+    return indexes.end();
+}
+
+const map<string, double>& SearchServer::GetWordFrequencies(int document_id) const {
+    static map<string, double> ret;
+    if (!ret.empty()) {
+        ret.clear();
+    }
+
+    for (const auto& [word, second_map] : word_to_document_freqs_) {
+        if(second_map.find(document_id) != second_map.end()) {
+            ret[word] = second_map.at(document_id);
+        }
+    }
+    return ret;
+}
+
+void SearchServer::RemoveDocument(int document_id) {
+    {
+        auto it = documents_.find(document_id);
+        if (it != documents_.end()) {
+            documents_.erase(it);
+        }
+    }
+
+    {
+        auto it = find(indexes.begin(), indexes.end(), document_id);
+        if (it != indexes.end()) {
+            indexes.erase(it);
+        }
+    }
+
+    {
+        for (auto& [word, maps] : word_to_document_freqs_) {
+            auto it = maps.find(document_id);
+            if (it != maps.end()) {
+                maps.erase(it);
+            }
+        }
+    }
+
+    {
+        auto it = find(id_remove.begin(), id_remove.end(), document_id);
+        if (it != id_remove.end()) {
+            id_remove.erase(it);
+        }
+    }
+
+    {
+        auto it = id_words.find(document_id);
+        if (it != id_words.end()) {
+            id_words.erase(it);
+        }
+    }
+
+}
+
+vector<int> SearchServer::GetIdWords() const {
+    return id_remove;
 }

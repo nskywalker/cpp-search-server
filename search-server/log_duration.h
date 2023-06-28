@@ -1,6 +1,3 @@
-#ifndef PROJECT_LOG_DURATION_H
-#define PROJECT_LOG_DURATION_H
-
 #pragma once
 
 #include <chrono>
@@ -9,7 +6,7 @@
 #define PROFILE_CONCAT_INTERNAL(X, Y) X##Y
 #define PROFILE_CONCAT(X, Y) PROFILE_CONCAT_INTERNAL(X, Y)
 #define UNIQUE_VAR_NAME_PROFILE PROFILE_CONCAT(profileGuard, __LINE__)
-#define LOG_DURATION(x) LogDuration UNIQUE_VAR_NAME_PROFILE(x, out)
+#define LOG_DURATION(x) LogDuration UNIQUE_VAR_NAME_PROFILE(x, std::cout)
 #define LOG_DURATION_STREAM(x, out) LogDuration UNIQUE_VAR_NAME_PROFILE(x, out)
 
 class LogDuration {
