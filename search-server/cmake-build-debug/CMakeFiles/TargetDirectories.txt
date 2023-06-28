@@ -1,0 +1,3 @@
+C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/CMakeFiles/project.dir
+C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
