@@ -1,0 +1,13 @@
+# ninja log v5
+2	1015	7096805898512215	CMakeFiles/project.dir/search_server.cpp.obj	f1df075354ed2909
+3	343	7089031975810576	CMakeFiles/project.dir/document.cpp.obj	ef6973115414d15f
+9	354	7089031975914846	CMakeFiles/project.dir/read_input_functions.cpp.obj	5be523a88c117368
+13	378	7089031976178481	CMakeFiles/project.dir/string_processing.cpp.obj	1100d1b08b178ce5
+10	1119	7096804749198232	CMakeFiles/project.dir/request_queue.cpp.obj	27f6b26a7782c625
+1015	1280	7096805901145180	project.exe	c4a92356376d76ce
+2	885	7096805333064510	CMakeFiles/project.dir/main.cpp.obj	145d035e9e024179
+5	524	7096805329457700	CMakeFiles/project.dir/remove_duplicates.cpp.obj	eb54b6e51a7d7063
+0	131	7096810738465770	build.ninja	5ae237e3c4efed1d
+2	522	7096816952962946	CMakeFiles/project.dir/main.cpp.obj	145d035e9e024179
+5	636	7096816954098697	CMakeFiles/project.dir/test_example_functions.cpp.obj	46fac2e8892e70be
+636	911	7096816956805951	project.exe	28837b8cbf30971a
