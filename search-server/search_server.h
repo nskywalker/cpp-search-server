@@ -54,10 +54,7 @@ public:
 
     void RemoveDocument(int document_id);
 
-    const map<int, set<string>>& GetIdWords() const;
-
 private:
-    map<int, set<string>> id_words;
     vector<int> indexes;
     bool IsValidStopWords() const;
     static bool IsValidWord(const string& word);

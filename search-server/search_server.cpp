@@ -20,7 +20,6 @@ void SearchServer::AddDocument(int document_id, const string& document, Document
     }
     const double inv_word_count = 1.0 / words.size();
     for (const string& word : words) {
-        id_words[document_id].insert(word);
         word_to_document_freqs_[word][document_id] += inv_word_count;
     }
     documents_.emplace(document_id, DocumentData{ComputeAverageRating(ratings), status});
@@ -193,15 +192,4 @@ void SearchServer::RemoveDocument(int document_id) {
         }
     }
 
-    {
-        auto it = id_words.find(document_id);
-        if (it != id_words.end()) {
-            id_words.erase(it);
-        }
-    }
-
-}
-
-const map<int, set<string>>& SearchServer::GetIdWords() const {
-    return id_words;
 }
