@@ -33,5 +33,3 @@ private:
     const Clock::time_point start_time_ = Clock::now();
     std::ostream& out_;
 };
-
-#endif //PROJECT_LOG_DURATION_H
