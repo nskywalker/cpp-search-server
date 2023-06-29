@@ -192,18 +192,4 @@ void SearchServer::RemoveDocument(int document_id) {
         }
     }
 
-<<<<<<< HEAD
-=======
-    {
-        auto it = id_words.find(document_id);
-        if (it != id_words.end()) {
-            id_words.erase(it);
-        }
-    }
-
-}
-
-const map<int, set<string>>& SearchServer::GetIdWords() const {
-    return id_words;
->>>>>>> aaa61b8b86cd71e43fb7dad29b09670d2a2f0785
 }
