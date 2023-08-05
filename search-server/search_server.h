@@ -7,6 +7,7 @@
 #include <map>
 #include <numeric>
 #include <cmath>
+#include <execution>
 #include "document.h"
 #include "string_processing.h"
 
@@ -47,12 +48,20 @@ public:
 
     tuple<vector<string>, DocumentStatus> MatchDocument(const string& raw_query, int document_id) const;
 
+    tuple<vector<string>, DocumentStatus> MatchDocument(const execution::sequenced_policy& seqOrParRem, const string& raw_query, int document_id) const;
+
+    tuple<vector<string>, DocumentStatus> MatchDocument(const execution::parallel_policy& seqOrParRem, const string& raw_query, int document_id) const;
+
     vector<int>::iterator begin();
     vector<int>::iterator end();
 
     const map<string, double>& GetWordFrequencies(int document_id) const;
 
     void RemoveDocument(int document_id);
+
+    void RemoveDocument(const execution::parallel_policy& seqOrParRem, int document_id);
+
+    void RemoveDocument(const execution::sequenced_policy& seqOrParRem, int document_id);
 
 private:
     vector<int> indexes;
@@ -64,6 +73,7 @@ private:
     };
     const set<string> stop_words_;
     map<string, map<int, double>> word_to_document_freqs_;
+    map<int, map<string, double>> document_to_word_freqs_;
     map<int, DocumentData> documents_;
     bool IsStopWord(const string& word) const;
     vector<string> SplitIntoWordsNoStop(const string& text) const;
@@ -84,6 +94,8 @@ private:
     };
 
     Query ParseQuery(const string& text) const;
+
+    Query ParseQuery(const execution::sequenced_policy& sequencedPolicy, const string& text) const;
 
     // Existence required
     double ComputeWordInverseDocumentFreq(const string& word) const;

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 project(project)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 include_directories(.)
 
@@ -17,4 +17,4 @@ add_executable(project
         search_server.cpp
         search_server.h
         string_processing.cpp
-        string_processing.h remove_duplicates.cpp remove_duplicates.h test_example_functions.cpp test_example_functions.h)
+        string_processing.h remove_duplicates.cpp remove_duplicates.h test_example_functions.cpp test_example_functions.h process_queries.cpp process_queries.h)
