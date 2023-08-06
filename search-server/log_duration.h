@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <string_view>
 
 #define PROFILE_CONCAT_INTERNAL(X, Y) X##Y
 #define PROFILE_CONCAT(X, Y) PROFILE_CONCAT_INTERNAL(X, Y)
@@ -15,7 +16,7 @@ public:
     // с помощью using для удобства
     using Clock = std::chrono::steady_clock;
 
-    explicit LogDuration(const std::string& id, std::ostream& out = std::cerr)
+    explicit LogDuration(const string_view id, std::ostream& out = std::cerr)
             : id_(id), out_(out) {
     }
 
@@ -29,7 +30,7 @@ public:
     }
 
 private:
-    const std::string id_;
+    const string_view id_;
     const Clock::time_point start_time_ = Clock::now();
     std::ostream& out_;
 };

@@ -8,131 +8,137 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug"/>
+				<Option working_dir="C:/Users/googl/cpp-search-server/search-server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="project">
-				<Option output="/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/project" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug"/>
+				<Option output="C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/project.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/googl/cpp-search-server/search-server/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/nikita/projects/cpp-search-server-main/search-server/."/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/Users/googl/cpp-search-server/search-server/."/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include/c++/13.1.0"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include/c++/13.1.0/x86_64-w64-mingw32"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include/c++/13.1.0/backward"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 project"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 project"/>
+					<CompileFile command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="project/fast">
-				<Option output="/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/project" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug"/>
+				<Option output="C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/project.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/googl/cpp-search-server/search-server/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/home/nikita/projects/cpp-search-server-main/search-server/."/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/Users/googl/cpp-search-server/search-server/."/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include/c++/13.1.0"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include/c++/13.1.0/x86_64-w64-mingw32"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include/c++/13.1.0/backward"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/dev/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 project/fast"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 project/fast"/>
+					<CompileFile command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug"/>
+				<Option working_dir="C:/Users/googl/cpp-search-server/search-server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug"/>
+				<Option working_dir="C:/Users/googl/cpp-search-server/search-server/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j12 -f &quot;/home/nikita/projects/cpp-search-server-main/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/dev/mingw64/bin/mingw32-make.exe -f &quot;C:/Users/googl/cpp-search-server/search-server/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/document.cpp">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/document.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/document.h">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/document.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/main.cpp">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/main.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/paginator.h">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/paginator.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/read_input_functions.cpp">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/process_queries.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/read_input_functions.h">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/process_queries.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/remove_duplicates.cpp">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/read_input_functions.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/remove_duplicates.h">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/read_input_functions.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/request_queue.cpp">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/remove_duplicates.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/request_queue.h">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/remove_duplicates.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/search_server.cpp">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/request_queue.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/search_server.h">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/request_queue.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/string_processing.cpp">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/search_server.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/string_processing.h">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/search_server.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/test_example_functions.cpp">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/string_processing.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/test_example_functions.h">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/string_processing.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/nikita/projects/cpp-search-server-main/search-server/CMakeLists.txt">
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/test_example_functions.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/test_example_functions.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

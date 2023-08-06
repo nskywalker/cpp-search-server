@@ -71,13 +71,11 @@ private:
         int rating;
         DocumentStatus status;
     };
-    const set<string> stop_words_;
     map<string, map<int, double>> word_to_document_freqs_;
     map<int, map<string, double>> document_to_word_freqs_;
     map<int, DocumentData> documents_;
     bool IsStopWord(const string& word) const;
     vector<string> SplitIntoWordsNoStop(const string& text) const;
-
     static int ComputeAverageRating(const vector<int>& ratings);
 
     struct QueryWord {
@@ -89,13 +87,15 @@ private:
     QueryWord ParseQueryWord(string text) const;
 
     struct Query {
-        set<string> plus_words;
-        set<string> minus_words;
+        vector<string> plus_words;
+        vector<string> minus_words;
     };
+
+    const set<string> stop_words_;
 
     Query ParseQuery(const string& text) const;
 
-    Query ParseQuery(const execution::sequenced_policy& sequencedPolicy, const string& text) const;
+    Query ParseQuery(bool isEraseDuplicates, const string& text) const;
 
     // Existence required
     double ComputeWordInverseDocumentFreq(const string& word) const;
@@ -115,7 +115,7 @@ SearchServer::SearchServer(const StringContainer& stop_words)
 
 template <typename DocumentPredicate>
 vector<Document> SearchServer::FindTopDocuments(const string& raw_query,
-                                  DocumentPredicate document_predicate) const {
+                                                DocumentPredicate document_predicate) const {
     const double bias = 1e-6;
     const Query query = ParseQuery(raw_query);
     auto matched_documents = FindAllDocuments(query, document_predicate);
@@ -135,7 +135,7 @@ vector<Document> SearchServer::FindTopDocuments(const string& raw_query,
 
 template <typename DocumentPredicate>
 vector<Document> SearchServer::FindAllDocuments(const Query& query,
-                                  DocumentPredicate document_predicate) const {
+                                                DocumentPredicate document_predicate) const {
     map<int, double> document_to_relevance;
     for (const string& word : query.plus_words) {
         if (word_to_document_freqs_.count(word) == 0) {
