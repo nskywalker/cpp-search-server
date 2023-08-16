@@ -224,30 +224,6 @@ read_input_functions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/read_input_functions.cpp.s
 .PHONY : read_input_functions.cpp.s
 
-remove_duplicates.obj: remove_duplicates.cpp.obj
-.PHONY : remove_duplicates.obj
-
-# target to build an object file
-remove_duplicates.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/remove_duplicates.cpp.obj
-.PHONY : remove_duplicates.cpp.obj
-
-remove_duplicates.i: remove_duplicates.cpp.i
-.PHONY : remove_duplicates.i
-
-# target to preprocess a source file
-remove_duplicates.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/remove_duplicates.cpp.i
-.PHONY : remove_duplicates.cpp.i
-
-remove_duplicates.s: remove_duplicates.cpp.s
-.PHONY : remove_duplicates.s
-
-# target to generate assembly for a file
-remove_duplicates.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/remove_duplicates.cpp.s
-.PHONY : remove_duplicates.cpp.s
-
 request_queue.obj: request_queue.cpp.obj
 .PHONY : request_queue.obj
 
@@ -320,30 +296,6 @@ string_processing.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/string_processing.cpp.s
 .PHONY : string_processing.cpp.s
 
-test_example_functions.obj: test_example_functions.cpp.obj
-.PHONY : test_example_functions.obj
-
-# target to build an object file
-test_example_functions.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/test_example_functions.cpp.obj
-.PHONY : test_example_functions.cpp.obj
-
-test_example_functions.i: test_example_functions.cpp.i
-.PHONY : test_example_functions.i
-
-# target to preprocess a source file
-test_example_functions.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/test_example_functions.cpp.i
-.PHONY : test_example_functions.cpp.i
-
-test_example_functions.s: test_example_functions.cpp.s
-.PHONY : test_example_functions.s
-
-# target to generate assembly for a file
-test_example_functions.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/test_example_functions.cpp.s
-.PHONY : test_example_functions.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -365,9 +317,6 @@ help:
 	@echo ... read_input_functions.obj
 	@echo ... read_input_functions.i
 	@echo ... read_input_functions.s
-	@echo ... remove_duplicates.obj
-	@echo ... remove_duplicates.i
-	@echo ... remove_duplicates.s
 	@echo ... request_queue.obj
 	@echo ... request_queue.i
 	@echo ... request_queue.s
@@ -377,9 +326,6 @@ help:
 	@echo ... string_processing.obj
 	@echo ... string_processing.i
 	@echo ... string_processing.s
-	@echo ... test_example_functions.obj
-	@echo ... test_example_functions.i
-	@echo ... test_example_functions.s
 .PHONY : help
 
 

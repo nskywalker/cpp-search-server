@@ -84,6 +84,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/googl/cpp-search-server/search-server/concurrent_map.h">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="C:/Users/googl/cpp-search-server/search-server/document.cpp">
 			<Option target="project"/>
 		</Unit>
@@ -108,12 +111,6 @@
 		<Unit filename="C:/Users/googl/cpp-search-server/search-server/read_input_functions.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="C:/Users/googl/cpp-search-server/search-server/remove_duplicates.cpp">
-			<Option target="project"/>
-		</Unit>
-		<Unit filename="C:/Users/googl/cpp-search-server/search-server/remove_duplicates.h">
-			<Option target="project"/>
-		</Unit>
 		<Unit filename="C:/Users/googl/cpp-search-server/search-server/request_queue.cpp">
 			<Option target="project"/>
 		</Unit>
@@ -130,12 +127,6 @@
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="C:/Users/googl/cpp-search-server/search-server/string_processing.h">
-			<Option target="project"/>
-		</Unit>
-		<Unit filename="C:/Users/googl/cpp-search-server/search-server/test_example_functions.cpp">
-			<Option target="project"/>
-		</Unit>
-		<Unit filename="C:/Users/googl/cpp-search-server/search-server/test_example_functions.h">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="C:/Users/googl/cpp-search-server/search-server/CMakeLists.txt">

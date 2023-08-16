@@ -158,41 +158,11 @@ CMakeFiles/project.dir/string_processing.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/string_processing.cpp.s"
 	C:\dev\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\googl\cpp-search-server\search-server\string_processing.cpp -o CMakeFiles\project.dir\string_processing.cpp.s
 
-CMakeFiles/project.dir/remove_duplicates.cpp.obj: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/remove_duplicates.cpp.obj: CMakeFiles/project.dir/includes_CXX.rsp
-CMakeFiles/project.dir/remove_duplicates.cpp.obj: C:/Users/googl/cpp-search-server/search-server/remove_duplicates.cpp
-CMakeFiles/project.dir/remove_duplicates.cpp.obj: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\googl\cpp-search-server\search-server\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/project.dir/remove_duplicates.cpp.obj"
-	C:\dev\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/remove_duplicates.cpp.obj -MF CMakeFiles\project.dir\remove_duplicates.cpp.obj.d -o CMakeFiles\project.dir\remove_duplicates.cpp.obj -c C:\Users\googl\cpp-search-server\search-server\remove_duplicates.cpp
-
-CMakeFiles/project.dir/remove_duplicates.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project.dir/remove_duplicates.cpp.i"
-	C:\dev\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\googl\cpp-search-server\search-server\remove_duplicates.cpp > CMakeFiles\project.dir\remove_duplicates.cpp.i
-
-CMakeFiles/project.dir/remove_duplicates.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/remove_duplicates.cpp.s"
-	C:\dev\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\googl\cpp-search-server\search-server\remove_duplicates.cpp -o CMakeFiles\project.dir\remove_duplicates.cpp.s
-
-CMakeFiles/project.dir/test_example_functions.cpp.obj: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/test_example_functions.cpp.obj: CMakeFiles/project.dir/includes_CXX.rsp
-CMakeFiles/project.dir/test_example_functions.cpp.obj: C:/Users/googl/cpp-search-server/search-server/test_example_functions.cpp
-CMakeFiles/project.dir/test_example_functions.cpp.obj: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\googl\cpp-search-server\search-server\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/project.dir/test_example_functions.cpp.obj"
-	C:\dev\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/test_example_functions.cpp.obj -MF CMakeFiles\project.dir\test_example_functions.cpp.obj.d -o CMakeFiles\project.dir\test_example_functions.cpp.obj -c C:\Users\googl\cpp-search-server\search-server\test_example_functions.cpp
-
-CMakeFiles/project.dir/test_example_functions.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project.dir/test_example_functions.cpp.i"
-	C:\dev\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\googl\cpp-search-server\search-server\test_example_functions.cpp > CMakeFiles\project.dir\test_example_functions.cpp.i
-
-CMakeFiles/project.dir/test_example_functions.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/test_example_functions.cpp.s"
-	C:\dev\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\googl\cpp-search-server\search-server\test_example_functions.cpp -o CMakeFiles\project.dir\test_example_functions.cpp.s
-
 CMakeFiles/project.dir/process_queries.cpp.obj: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/process_queries.cpp.obj: CMakeFiles/project.dir/includes_CXX.rsp
 CMakeFiles/project.dir/process_queries.cpp.obj: C:/Users/googl/cpp-search-server/search-server/process_queries.cpp
 CMakeFiles/project.dir/process_queries.cpp.obj: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\googl\cpp-search-server\search-server\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/project.dir/process_queries.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\googl\cpp-search-server\search-server\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/project.dir/process_queries.cpp.obj"
 	C:\dev\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/process_queries.cpp.obj -MF CMakeFiles\project.dir\process_queries.cpp.obj.d -o CMakeFiles\project.dir\process_queries.cpp.obj -c C:\Users\googl\cpp-search-server\search-server\process_queries.cpp
 
 CMakeFiles/project.dir/process_queries.cpp.i: cmake_force
@@ -211,8 +181,6 @@ project_OBJECTS = \
 "CMakeFiles/project.dir/request_queue.cpp.obj" \
 "CMakeFiles/project.dir/search_server.cpp.obj" \
 "CMakeFiles/project.dir/string_processing.cpp.obj" \
-"CMakeFiles/project.dir/remove_duplicates.cpp.obj" \
-"CMakeFiles/project.dir/test_example_functions.cpp.obj" \
 "CMakeFiles/project.dir/process_queries.cpp.obj"
 
 # External object files for target project
@@ -224,14 +192,12 @@ project.exe: CMakeFiles/project.dir/read_input_functions.cpp.obj
 project.exe: CMakeFiles/project.dir/request_queue.cpp.obj
 project.exe: CMakeFiles/project.dir/search_server.cpp.obj
 project.exe: CMakeFiles/project.dir/string_processing.cpp.obj
-project.exe: CMakeFiles/project.dir/remove_duplicates.cpp.obj
-project.exe: CMakeFiles/project.dir/test_example_functions.cpp.obj
 project.exe: CMakeFiles/project.dir/process_queries.cpp.obj
 project.exe: CMakeFiles/project.dir/build.make
 project.exe: CMakeFiles/project.dir/linkLibs.rsp
 project.exe: CMakeFiles/project.dir/objects1
 project.exe: CMakeFiles/project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\googl\cpp-search-server\search-server\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable project.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\googl\cpp-search-server\search-server\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable project.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\project.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -17,4 +17,6 @@ add_executable(project
         search_server.cpp
         search_server.h
         string_processing.cpp
-        string_processing.h remove_duplicates.cpp remove_duplicates.h test_example_functions.cpp test_example_functions.h process_queries.cpp process_queries.h)
+        string_processing.h
+#        remove_duplicates.cpp remove_duplicates.h test_example_functions.cpp test_example_functions.h
+        process_queries.cpp process_queries.h concurrent_map.h)
